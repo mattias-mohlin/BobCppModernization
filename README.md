@@ -7,6 +7,8 @@ To be able to work with the C++ code in modern IDEs that use language servers, w
 [More information here.](/compilation_db_generation/README.md)
 
 ## Improved Documentation
+Old code bases typically have poor documentation. And if some documentation exists, it's commonly outdated, inconsistently formatted, or incomplete.
+
 
 
 
