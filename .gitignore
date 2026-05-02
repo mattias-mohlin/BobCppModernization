@@ -1,0 +1,2 @@
+mcp-build-server/build/*
+mcp-build-server/node_modules/**/**

@@ -1,8 +1,8 @@
 # BobCppModernization
-Use of IBM BOB for modernizing old C++ code bases
+Use of IBM BOB for modernizing old C++ code bases.
 
 ## Compilation Database Generation for the Clangd Language Server
-To be able to work with the C++ code in modern IDEs that use language servers, we need to generate a compilation database. BOB analyzed the code structure of the code base and generated a Node JS script which can be run to produce such a compilation database for the Clangd language server. The script takes the target configuration as input and computes correct compiler flags based on that. After running the script, C++ files can be edited in the IDE and the Clangd language server will provide code completion, navigation, hover tooltip and all other features expected from a modern IDE.
+To be able to work with the C++ code in modern IDEs that use language servers, we need to generate a compilation database. I asked BOB to analyze the code structure of the code base and generate a Node JS script which can be run to produce such a compilation database for the Clangd language server. The script takes the target configuration as input and computes correct compiler flags based on that. After running the script, C++ files can be edited in the IDE and the Clangd language server will provide code completion, navigation, hover tooltip and all other features expected from a modern IDE.
 
 [More information here](/compilation_db_generation/README.md)
 
@@ -11,8 +11,10 @@ Old code bases typically have poor documentation. And if some documentation exis
 
 [Generated BOB Mode definition](/.bob/custom_modes.yaml)
 
+## Build MCP Server
+Modern build systems like CMake are not always available for old code bases. Instead it's common to see proprietary build scripts which are often not very maintainable. Replacing these old build systems with something more modern is also not always feasible, since applications that use the code base may have customized and extended it. So I decided to ask BOB to implement an MCP server which can wrap the existing legacy build system, and make it easier to use from agentic IDEs.
 
-
+[More information here](/mcp-build-server/README.md)
 
 
 

@@ -281,16 +281,6 @@ The file will be overwritten each time, so you only need one configuration activ
 
 If you work with multiple TargetRTS workspaces, run the script in each workspace directory to generate a separate `compile_commands.json` for each.
 
-## License
-
-Licensed Materials - Property of HCL and/or IBM
-
-Copyright HCL Technologies Ltd. 2016, 2024. All Rights Reserved.
-
-Copyright IBM Corporation 1999, 2016. All Rights Reserved.
-
-U.S. Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule.
-
 ## Support
 
 For issues or questions about this script, refer to the implementation plan in `COMPILE_COMMANDS_IMPL_PLAN.md`.

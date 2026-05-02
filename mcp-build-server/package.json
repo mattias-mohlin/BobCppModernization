@@ -1,0 +1,31 @@
+{
+  "name": "mcp-targetrts-build-server",
+  "version": "1.0.0",
+  "description": "MCP server for building TargetRTS library",
+  "type": "module",
+  "main": "build/index.js",
+  "bin": {
+    "mcp-targetrts-build": "build/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "start": "node build/index.js"
+  },
+  "keywords": [
+    "mcp",
+    "targetrts",
+    "build",
+    "compiler"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0"
+  }
+}
