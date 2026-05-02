@@ -16,6 +16,22 @@ Modern build systems like CMake are not always available for old code bases. Ins
 
 [More information here](/mcp-build-server/README.md)
 
+## Modernize Code Base with the C++ Standard Library
+Many old code bases were written before the C++ Standard Library was introduced, or supported on necessary target platforms. For example, instead of using standard C++ containers, the code base may have used custom data structures. I asked BOB to create an Architecture Decision Record (ADR) which describes how to modernize the code base with the C++ Standard Library. The result is [here](/adr/001-modernize-data-structures-with-cpp-standard-library.md).
+
+I then asked BOB to implement a proof-of-concept of the ADR for one specific data structure; RTDictionary. After reviewing the [POC](/poc/RTDictionary_POC_README.md), I asked BOB to replace RTDictionary with the new [modern implementation](/poc/RTDictionaryModern.h) based on the C++ Standard Library. 
+
+Finally I verified the new implementation by running the [publically available unit tests](https://github.com/secure-dev-ops/code-realtime/tree/main/art-comp-test/tests) for the TargetRTS. They all passed!
+
+![](/poc/test_results.png)
+
+
+
+
+
+
+
+
 
 
 
