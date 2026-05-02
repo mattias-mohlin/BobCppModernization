@@ -25,6 +25,11 @@ Finally I verified the new implementation by running the [publically available u
 
 ![](/poc/test_results.png)
 
+## Extend Legacy Test System with MCP Server
+Old C++ code bases often use proprietary test systems, created long before anyone knew what is an MCP server. I asked BOB to extend such a legacy test system with an MCP server to make it possible to run tests directly from my IDE. This was much more challenging than to create a completely new MCP server (see [Build MCP Server](#build-mcp-server)) since I wanted to keep also the original test system intact. The main problem was that the original test system used `stdout` a lot, which interfered with the MCP server. BOB had to refactor it a bit to make it work.
+
+See [BOB's generated plan](mcp-test-server/MCP_INTEGRATION_PLAN.md) and the updated test system [here](mcp-test-server/README.md).
+
 
 
 

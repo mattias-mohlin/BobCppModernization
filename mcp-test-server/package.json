@@ -1,0 +1,28 @@
+{
+  "name": "new-tests-runner",
+  "version": "1.0.0",
+  "private": true,
+  "description": "New Tests Runner",
+  "keywords": [],
+  "author": "Mattias Mohlin",
+  "main": "app.js",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "express": "^5.1.0",
+    "socket.io": "^4.8.1",
+    "yargs": "^17.7.2",
+    "strftime": "^0.10.3",
+    "fs-extra": "^11.3.0",
+    "showdown": "^2.1.0",
+    "xmlbuilder2": "^3.1.1"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "jshintConfig": {
+    "esversion": 6,
+    "strict": true,
+    "-W097": true,
+    "node": true
+  }
+}
