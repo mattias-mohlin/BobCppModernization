@@ -16,7 +16,7 @@ This MCP server provides three tools for managing TargetRTS builds:
 
 - Node.js (version 20 or higher)
 - TypeScript
-- rtperl (must be in PATH)
+- perl (must be in PATH; see [here ](https://www.perl.org/get.html) if you don't have Perl already installed)
 - TargetRTS source code
 
 ### Setup
@@ -40,8 +40,12 @@ This MCP server provides three tools for managing TargetRTS builds:
 
 ## Configuration
 
-The MCP server is configured in Bob's settings file at:
-`C:\Users\MATTIAS.MOHLIN\.bob\settings\mcp_settings.json`
+The MCP server can be configured in Bob's settings file. On Windows the default location is:
+`C:\Users\USER.NAME\.bob\settings\mcp_settings.json`
+
+Alternatively, you can create a file `.bob/mcp.json` in the root of your workspace folder.
+
+The example below assumes you have cloned this repository to `c:/bob/git`:
 
 Configuration:
 ```json
@@ -53,7 +57,7 @@ Configuration:
         "c:/bob/git/BobCppModernization/mcp-build-server/build/index.js"
       ],
       "env": {
-        "TARGETRTS_ROOT": "c:/git/rsarte-target-rts/rsa_rt/C++/TargetRTS"
+        "TARGETRTS_ROOT": "<Target-RTS>"
       },
       "disabled": false,
       "alwaysAllow": [],
@@ -104,7 +108,7 @@ Builds the TargetRTS library for a specified target configuration.
 **Build Process**:
 1. Validates that the target exists in the `config/` directory
 2. Changes to the `src/` directory
-3. Executes: `rtperl Build.pl <target> <build_command>`
+3. Executes: `perl Build.pl <target> <build_command>`
 4. Streams build output to the console in real-time
 5. Returns build status
 
@@ -114,41 +118,6 @@ Builds the TargetRTS library for a specified target configuration.
 "Compile TargetRTS using WinT.x64-MinGw-12.2.0"
 "Build TargetRTS for target LinuxT.x64-gcc-12.x"
 ```
-
-**Console Output** (streamed in real-time):
-```
-=== Building TargetRTS ===
-Target: WinT.x64-MinGw-12.2.0
-Command: rtperl Build.pl WinT.x64-MinGw-12.2.0 make all
-Working directory: c:/git/rsarte-target-rts/rsa_rt/C++/TargetRTS/src
-===========================
-
-Compiling RTAbortController/ct.cc...
-Compiling RTActor/ct.cc...
-Compiling RTActorFactory/ct.cc...
-...
-Linking libTargetRTS.a...
-
-=== Build Completed Successfully ===
-Exit code: 0
-===========================
-```
-
-**Tool Response**:
-```
-Build completed successfully for target: WinT.x64-MinGw-12.2.0
-Exit code: 0
-
-=== Build Output ===
-Compiling RTAbortController/ct.cc...
-Compiling RTActor/ct.cc...
-Compiling RTActorFactory/ct.cc...
-...
-Linking libTargetRTS.a...
-Build complete.
-```
-
-**Note**: The tool response now includes the complete build output line-by-line, in addition to streaming it to the console in real-time. This allows you to see all compiler messages, warnings, and errors directly in the response.
 
 ### 3. clean_build_artifacts
 
@@ -168,26 +137,6 @@ Cleans build artifacts for a specified target configuration by deleting the `bui
 "Clean build artifacts for Windows MinGW"
 "Delete build files for LinuxT.x64-gcc-12.x"
 "Clean the build for WinT.x64-MinGw-12.2.0"
-```
-
-**Console Output**:
-```
-=== Cleaning Build Artifacts ===
-Target: WinT.x64-MinGw-12.2.0
-Build directory: c:/git/rsarte-target-rts/rsa_rt/C++/TargetRTS/build-WinT.x64-MinGw-12.2.0
-================================
-
-Deleting build directory...
-
-=== Clean Completed Successfully ===
-Deleted: build-WinT.x64-MinGw-12.2.0/
-====================================
-```
-
-**Tool Response**:
-```
-Successfully cleaned build artifacts for target: WinT.x64-MinGw-12.2.0
-Deleted: build-WinT.x64-MinGw-12.2.0/
 ```
 
 ## Usage Examples
@@ -219,92 +168,6 @@ Bob: [Uses clean_build_artifacts with target: "LinuxT.x64-gcc-12.x"]
      [Build output streams to console]
      Build completed successfully for target: LinuxT.x64-gcc-12.x
 ```
-
-### Example 3: Custom Build Command
-
-```
-User: "Build only the RTActor component for Windows MinGW"
-Bob: [Uses build_targetrts with target: "WinT.x64-MinGw-12.2.0", build_command: "make RTActor"]
-     [Build output streams to console]
-     Build completed successfully for target: WinT.x64-MinGw-12.2.0
-```
-
-## Output Streaming
-
-The MCP server streams build output to the console in real-time, making it visible in the terminal where the server is running. This allows you to:
-
-- Monitor build progress
-- See compiler messages and warnings
-- Identify errors immediately
-- Track which files are being compiled
-
-All build output goes to stderr, ensuring it's visible in the terminal while the MCP protocol communication happens on stdout.
-
-## Error Handling
-
-The server handles various error scenarios:
-
-### Target Not Found
-```
-Error: Target configuration 'InvalidTarget' not found in config/ directory.
-
-Use list_build_targets to see available targets.
-```
-
-### Build Failure
-```
-Build failed for target: WinT.x64-MinGw-12.2.0 (exit code: 1)
-Exit code: 1
-```
-
-### TargetRTS Root Not Found
-```
-Error: Config directory not found: c:/git/rsarte-target-rts/rsa_rt/C++/TargetRTS/config
-```
-
-### rtperl Not Found
-```
-Failed to start build process: spawn rtperl ENOENT
-```
-
-## Troubleshooting
-
-### Issue: "rtperl command not found"
-
-**Cause**: rtperl is not in the system PATH
-
-**Solution**: 
-- Ensure rtperl is installed
-- Add rtperl to your system PATH
-- Verify with: `rtperl --version`
-
-### Issue: "Config directory not found"
-
-**Cause**: TARGETRTS_ROOT environment variable points to wrong location
-
-**Solution**:
-- Verify the path in mcp_settings.json
-- Ensure the path contains `src/`, `config/`, and `include/` subdirectories
-- Use forward slashes (/) in the path, even on Windows
-
-### Issue: Build output not visible
-
-**Cause**: MCP server not started from a terminal
-
-**Solution**:
-- The MCP server must be started from a VS Code terminal to see build output
-- Build messages are written to stderr for visibility
-
-### Issue: Permission denied deleting build directory
-
-**Cause**: Files in use or insufficient permissions
-
-**Solution**:
-- Close any programs using files in the build directory
-- Ensure you have write permissions
-- Try running VS Code as administrator if necessary
-
-## Development
 
 ### Project Structure
 

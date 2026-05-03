@@ -1,15 +1,15 @@
 # Generate compile_commands.json for TargetRTS
 
-This script generates a `compile_commands.json` file for the TargetRTS C++ codebase, enabling Clangd language server support in VS Code for improved code navigation, IntelliSense, and error detection.
+This script generates a `compile_commands.json` file for the TargetRTS C++ codebase, enabling Clangd language server support in IBM Bob for improved code navigation, IntelliSense, and error detection.
 
 ## Prerequisites
 
 - **Node.js** (version 12 or higher)
-- **VS Code** with the **Clangd extension** installed
+- **Bob** with the **Clangd extension** installed
 
 ## Installation
 
-No installation required. The script is a standalone Node.js file located in the TargetRTS root directory.
+No installation required. The script is a standalone Node.js file located in the `compilation_db_generation` directory. Copy it to the root of the TargetRTS.
 
 ## Usage
 

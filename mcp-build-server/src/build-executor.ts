@@ -24,14 +24,14 @@ export async function executeBuild(
   
   console.error(`\n=== Building TargetRTS ===`);
   console.error(`Target: ${target}`);
-  console.error(`Command: rtperl Build.pl ${target} ${buildCommand}`);
+  console.error(`Command: perl Build.pl ${target} ${buildCommand}`);
   console.error(`Working directory: ${srcDir}`);
   console.error(`===========================\n`);
 
   return new Promise((resolve) => {
     const outputLines: string[] = [];
     
-    const buildProcess = spawn('rtperl', ['Build.pl', target, ...buildCommand.split(' ')], {
+    const buildProcess = spawn('perl', ['Build.pl', target, ...buildCommand.split(' ')], {
       cwd: srcDir,
       stdio: ['ignore', 'pipe', 'pipe'],
       shell: true,

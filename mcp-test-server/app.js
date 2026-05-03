@@ -429,14 +429,10 @@ if (argv.mcp) {
     }).catch((error) => {
         console.error('Error starting MCP server: ' + error);
         process.exit(1);
-    });
-
-    // When running in MCP mode, we ONLY run the MCP server
-    // Do not execute the normal test runner startup code below
-    // Exit the function here to prevent any further execution
-    return;
+    });    
 }
-else if (argv.port) {
+
+if (argv.port) {
     // A port is specified. Start the web server.
     webServer.start((app) => {
         // Routes 
