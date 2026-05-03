@@ -11,5 +11,5 @@
 Now you are ready to follow the [README](README.md) guide to run various Bob-created tools on the TargetRTS.
 
 [!NOTE]  
-    The Community Edition of Code RealTime only contains the API (i.e. C++ header files) of the TargetRTS (the source code is part of the Commercial Edition). But you can still run the Bob-generated tools on it. You can see the behavior when the tools are run on the full TargetRTS in [this video](https://www.youtube.com/watch?v=j_j_j_j_jU).
+    The Community Edition of Code RealTime only contains the API (i.e. C++ header files) of the TargetRTS (the source code is part of the Commercial Edition). But you can still run the Bob-generated tools on it. You can see the behavior when the tools are run on the full TargetRTS in [this video](https://youtu.be/F307KYMUE58).
 

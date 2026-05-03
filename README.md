@@ -3,6 +3,8 @@ Use of IBM Bob for modernizing old C++ code bases, by developing tools that can 
 
 Although some of these tools can work on any C++ code base, they were primarily developed for working with a C++ run-time library, known as the TargetRTS. This library is used in many embedded and cyber physical systems since more than 30 years. Before you can run the tools on that code base, follow these prerequisite [steps](PREREQUISITES.md).
 
+To see the tools in action, see this [video](https://youtu.be/F307KYMUE58).
+
 ## Compilation Database Generation for the Clangd Language Server
 To be able to work with the C++ code in modern IDEs that use language servers, we need to generate a compilation database. Bob was asked to analyze the code structure of the TargetRTS code base and to generate a Node JS script which can be run to produce such a compilation database for the Clangd language server. The script takes the target configuration as input and computes correct compiler flags based on that. After running the script, C++ files can be edited in the Bob IDE and the Clangd language server will provide code completion, navigation, hover tooltip and similar features expected from a modern IDE.
 
@@ -39,6 +41,7 @@ Modern build systems like CMake are not always available for old code bases. Ins
 2. Start a new Bob task and switch to Advanced mode. Type "List TargetRTS build targets". You should see a list of build targets.
 
 ![](/mcp-build-server/build-targets.png)
+
 3. If you have C++ build tools and Perl installed, you can also try the other MCP tools to build and clean.
 
 
@@ -89,10 +92,9 @@ Old C++ code bases often use proprietary test systems, created long before anyon
 Notes:
 * You need to have a Java Runtime Environment (JRE) installed on your machine and the `java` executable in your `PATH`.
 * You need to have C++ build tools installed (and in your `PATH`) to build the tests.
-* The default timeout is too low (it takes longer to run all tests). Set it to the max which is 3600 seconds (1 hour).
+* Adjust the `--port` argument to a free port on your machine. You can view test results in the browser at `http://localhost:<port>/`.
+* The default timeout is too low (it takes ~20 minutes to run all tests). Set it to the max which is 3600 seconds (1 hour).
 
-At the end of [this video]() you can see the MCP server in action.
+5. Start a new task in Bob and type "Run all tests". You should see on the webpage that all tests start to run.
 
-
-
-
+At the end of [this video](https://youtu.be/F307KYMUE58) you can see the MCP server in action, and some examples of more prompts you can try.
