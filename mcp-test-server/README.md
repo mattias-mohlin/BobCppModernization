@@ -117,14 +117,22 @@ To use the test runner with an MCP client (such as Cline in VS Code), add the fo
     "test-runner": {
       "command": "node",
       "args": [
-        "c:/git/rtistic-pub-doc/art-comp-test/runner/app.js",
-        "--testDir=../tests",
+        "C:/bob/git/BobCppModernization/mcp-test-server/app.js",
+        "--testDir=C:/bob/git/code-realtime/art-comp-test/tests",
         "--targetConfig=WinT.x64-MinGw-12.2.0",
+        "--terminateWebServer=never",
+        "--testSuiteName=TEST_WITH_MCP_SERVER",
+        "--port=4100",
         "--javaVM=C:/openjdk/jdk-21.0.4.7-hotspot/bin/java",
-        "--artCompilerJar=C:/VSCode/data/extensions/secure-dev-ops.code-realtime-ce-2.0.8/bin/artcompiler.jar",
-        "--targetRTSDir=C:/VSCode/data/extensions/secure-dev-ops.code-realtime-ce-2.0.8/TargetRTS",
-        "--mcp"
-      ]
+        "--artCompilerJar=c:/Users/USER.NAME/.bobide/extensions/secure-dev-ops.code-realtime-ce-3.3.0-universal/bin/artcompiler.jar",
+        "--targetRTSDir=<Target-RTS>",
+        "--mcp",
+        "--log=C:/bob/mcp_log.txt"
+      ],
+      "timeout": 3600,
+      "disabled": false,
+      "alwaysAllow": [],
+      "disabledTools": []
     }
   }
 }

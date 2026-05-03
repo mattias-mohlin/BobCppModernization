@@ -15,7 +15,7 @@ To be able to work with the C++ code in modern IDEs that use language servers, w
 RTBoolean testBool;
 ```
 2. You should see errors, indicating that Clangd cannot find the file `RTBoolean.h` and the type `RTBoolean`.
-3. Run the script [generate-compile-commands.js](compilation_db_generation\generate-compile-commands.js) as described [here](/compilation_db_generation/README.md). If you have a C++ compiler installed you can pick a target configuration that matches it. If not, just pick any target configuration.
+3. Run the script [generate-compile-commands.js](/compilation_db_generation/generate-compile-commands.js) as described [here](/compilation_db_generation/README.md). If you have a C++ compiler installed you can pick a target configuration that matches it. If not, just pick any target configuration.
 4. Restart the Clangd language server from the Command Palette of Bob using the command `clangd: Restart language server`.
 5. The errors should now be gone, and you can navigate to `RTBoolean`. A hover tooltip is now also available.
 
